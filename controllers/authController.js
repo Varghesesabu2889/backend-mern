@@ -51,9 +51,9 @@ res.status(200).json({
 
         const { password: userPassword, role, ...rest } = user._doc;
 
-        const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET_KEY, { expiresIn: '1d' });
+        const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET_KEY, { expiresIn: '2d' });
 
-        res.cookie('accessToken', token, { httpOnly: true, expires: new Date(Date.now() + 1 *  60 *60 * 60 * 1000) });
+        res.cookie('accessToken', token, { httpOnly: true, expires: new Date(Date.now() + 2 * 24 *  60 *60 * 60 * 1000) });
 
         res.status(200).json({ success: true, token, data: { ...rest }, role });
     } catch (err) {
